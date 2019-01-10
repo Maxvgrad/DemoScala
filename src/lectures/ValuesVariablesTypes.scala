@@ -1,4 +1,4 @@
-package exercises
+package lectures
 
 object ValuesVariablesTypes extends App {
 
