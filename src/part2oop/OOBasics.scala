@@ -75,9 +75,9 @@ class Counter(val num: Int) {
 
   def increment(num: Int) = new Counter(this.num + num)
 
-  def increment = increment(1)
+  def increment: Counter = increment(1)
 
   def decrement(num: Int) = new Counter(this.num - num)
 
-  def decrement = decrement(1)
+  def decrement: Counter = decrement(1)
 }
