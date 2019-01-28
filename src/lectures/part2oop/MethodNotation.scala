@@ -1,4 +1,4 @@
-package part2oop
+package lectures.part2oop
 
 object MethodNotation extends App {
 
