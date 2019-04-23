@@ -1,6 +1,6 @@
 package lectures.part2oop
 
-object InheritanceAndTraits extends App {
+object Inheritance extends App {
 
   class Animal {
     val creatureType = "Wild"
@@ -46,6 +46,8 @@ object InheritanceAndTraits extends App {
   cat testAccessModifier
 
   val dog = new Dog
+  val unknownDog: Animal = new Dog
+
   println(dog eat)
   println(dog creatureType)
 
@@ -72,7 +74,7 @@ object InheritanceAndTraits extends App {
   // Preventing overriding:
   // 1. final on member
   // 2. final on the entire class
-  // 3. seal - allow extend class in this file but prevent from
+  // 3. seal - allow extend class in this file but prevent from (like package private)
 
   sealed class Shape {
     val name = "Abstract shape"
@@ -85,4 +87,5 @@ object InheritanceAndTraits extends App {
   val shape: Shape = new Rectangular()
 
   println(shape name)
+
 }
