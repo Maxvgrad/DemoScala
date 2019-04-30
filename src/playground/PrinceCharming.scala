@@ -1,7 +1,0 @@
-package playground
-
-class PrinceCharming {
-
-
-
-}
