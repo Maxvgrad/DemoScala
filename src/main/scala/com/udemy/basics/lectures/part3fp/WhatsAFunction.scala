@@ -18,7 +18,7 @@ object WhatsAFunction extends App {
 
   println(adder(32, 1))
 
-  val adder2 = adder(2, _)
+  val adder2: Int => Int = adder(2, _)
 
   println(adder2(3))
 

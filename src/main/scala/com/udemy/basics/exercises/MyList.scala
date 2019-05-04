@@ -16,7 +16,7 @@ abstract class MyList[+A]  {
   def flatMap[E](function: A => MyList[E]): MyList[E]
 
   //hofs
-  def forEach[E](function: A => Unit): Unit
+  def foreach[E](function: A => Unit): Unit
   def sort(function: (A, A) => Int): MyList[A]
   def zipWith[B, C](list: MyList[B], function: (A, B) => C): MyList[C]
   def fold[B](acc: B)(function: (A, B) => B): B //reduce
@@ -42,7 +42,7 @@ case object Empty extends MyList[Nothing] {
 
   override def flatMap[E](function: Nothing => MyList[E]): MyList[E] = Empty
 
-  override def forEach[E](function: Nothing => Unit): Unit = ()
+  override def foreach[E](function: Nothing => Unit): Unit = ()
 
   override def sort(function: (Nothing, Nothing) => Int): MyList[Nothing] = Empty
 
@@ -76,10 +76,9 @@ case class Cons[+A](head: A, tail: MyList[A]) extends MyList[A] {
     function(head) ++ tail.flatMap(function)
   }
 
-
-  override def forEach[E](function: A => Unit): Unit = {
+  override def foreach[E](function: A => Unit): Unit = {
       function(head)
-      tail.forEach(function)
+      tail.foreach(function)
   }
 
   override def sort(comparator: (A, A) => Int): MyList[A] = {
@@ -148,17 +147,35 @@ object ListTest extends App {
   println(numbers2.fold(0)(_ + _))
 
   println("forEach test")
-  numbers.forEach(element => println(s"Element: $element"))
-  numbers.forEach(println)
+  numbers.foreach(element => println(s"Element: $element"))
+  numbers.foreach(println)
 
   println("zip test")
   val zippedNumbers: MyList[Int] = numbers.zipWith(numbers2, (h1: Int, h2: Int) => h1 + h2)
-  zippedNumbers.forEach(element => println(s"Element: $element"))
-  numbers.zipWith[Int, String](numbers2, _ + " " + _).forEach(println)
+  zippedNumbers.foreach(element => println(s"Element: $element"))
+  numbers.zipWith[Int, String](numbers2, _ + " " + _).foreach(println)
 
 
   println("sort test")
   val unordered: Cons[Int] = Cons(44, Cons[Int](19, Cons[Int](20, Cons[Int](12, Cons[Int](5, Empty)))))
-  unordered.sort((x: Int, y: Int) => x - y).forEach(println)
+  unordered.sort((x: Int, y: Int) => x - y).foreach(println)
+
+
+  // check for comprehensions
+
+  println("for-comprehensions")
+
+  for {
+    n <- numbers
+  } print(n)
+
+  println("  even:")
+
+  val combinations = for {
+    n <- numbers
+    s <- listOfString
+  } yield s + " - " + n
+
+  println(combinations)
 
 }
