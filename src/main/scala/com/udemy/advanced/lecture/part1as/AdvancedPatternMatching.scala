@@ -1,5 +1,4 @@
-package com.udemy.advanced.lecture
-
+package com.udemy.advanced.lecture.part1as
 
 object AdvancedPatternMatching extends App {
 
@@ -10,7 +9,7 @@ object AdvancedPatternMatching extends App {
   }
 
   class Person(val name: String, val age: Int)
-  
+
   object Person {
     def unapply(arg: Person): Option[(String, Int)] = Some((arg.name, arg.age))
     def unapply(age: Int): Option[String] = Some(if (age < 25) "minor" else "major")

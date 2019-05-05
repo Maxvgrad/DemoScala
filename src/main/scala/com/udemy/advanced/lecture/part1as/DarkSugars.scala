@@ -1,4 +1,4 @@
-package com.udemy.advanced.lecture
+package com.udemy.advanced.lecture.part1as
 
 import scala.util.{Random, Try}
 

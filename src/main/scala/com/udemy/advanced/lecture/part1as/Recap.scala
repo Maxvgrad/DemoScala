@@ -1,4 +1,4 @@
-package com.udemy.advanced.lecture
+package com.udemy.advanced.lecture.part1as
 
 object Recap extends App {
 
@@ -11,6 +11,6 @@ object Recap extends App {
 
   class Animal
 
-  
+
 
 }
